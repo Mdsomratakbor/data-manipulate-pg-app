@@ -1,0 +1,11 @@
+G:\My Project\data-manipulate-pg\data-manipulate-pg\bin\Debug\net8.0\data-manipulate-pg.deps.json
+G:\My Project\data-manipulate-pg\data-manipulate-pg\bin\Debug\net8.0\data-manipulate-pg.dll
+G:\My Project\data-manipulate-pg\data-manipulate-pg\bin\Debug\net8.0\data-manipulate-pg.pdb
+G:\My Project\data-manipulate-pg\data-manipulate-pg\obj\Debug\net8.0\data-manipulate-pg.GeneratedMSBuildEditorConfig.editorconfig
+G:\My Project\data-manipulate-pg\data-manipulate-pg\obj\Debug\net8.0\data-manipulate-pg.AssemblyInfoInputs.cache
+G:\My Project\data-manipulate-pg\data-manipulate-pg\obj\Debug\net8.0\data-manipulate-pg.AssemblyInfo.cs
+G:\My Project\data-manipulate-pg\data-manipulate-pg\obj\Debug\net8.0\data-manipulate-pg.csproj.CoreCompileInputs.cache
+G:\My Project\data-manipulate-pg\data-manipulate-pg\obj\Debug\net8.0\data-manipulate-pg.dll
+G:\My Project\data-manipulate-pg\data-manipulate-pg\obj\Debug\net8.0\refint\data-manipulate-pg.dll
+G:\My Project\data-manipulate-pg\data-manipulate-pg\obj\Debug\net8.0\data-manipulate-pg.pdb
+G:\My Project\data-manipulate-pg\data-manipulate-pg\obj\Debug\net8.0\ref\data-manipulate-pg.dll
