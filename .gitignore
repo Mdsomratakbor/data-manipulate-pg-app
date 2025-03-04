@@ -1,1 +1,5 @@
 /.vs
+/data-manipulate-pg-test/obj
+/data-manipulate-pg/obj
+/data-manipulate-pg/bin
+/data-manipulate-pg-test/bin

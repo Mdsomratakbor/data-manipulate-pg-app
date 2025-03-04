@@ -5,6 +5,8 @@ VisualStudioVersion = 17.12.35707.178 d17.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "data-manipulate-pg", "data-manipulate-pg\data-manipulate-pg.csproj", "{C2E4551C-9978-4DDA-A1C1-14C580AFFE55}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "data-manipulate-pg-test", "data-manipulate-pg-test\data-manipulate-pg-test.csproj", "{408C84D2-E637-4F30-94CF-39BB7D826809}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{C2E4551C-9978-4DDA-A1C1-14C580AFFE55}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C2E4551C-9978-4DDA-A1C1-14C580AFFE55}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C2E4551C-9978-4DDA-A1C1-14C580AFFE55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{408C84D2-E637-4F30-94CF-39BB7D826809}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{408C84D2-E637-4F30-94CF-39BB7D826809}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{408C84D2-E637-4F30-94CF-39BB7D826809}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{408C84D2-E637-4F30-94CF-39BB7D826809}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

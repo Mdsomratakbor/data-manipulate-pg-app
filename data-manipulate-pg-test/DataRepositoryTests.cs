@@ -4,6 +4,9 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using data_manipulate_pg;
+using data_manipulate_pg.Interfaces;
+using Moq;
 using Npgsql;
 
 namespace data_manipulate_pg_test
@@ -14,7 +17,7 @@ namespace data_manipulate_pg_test
         private readonly Mock<NpgsqlCommand> _mockCommand;
         private readonly Mock<NpgsqlDataReader> _mockReader;
         private readonly Mock<NpgsqlDataAdapter> _mockDataAdapter;
-        private readonly DataRepository _dataRepository;
+        private readonly IDataRepository _dataRepository;
 
         public DataRepositoryTests()
         {
@@ -29,7 +32,7 @@ namespace data_manipulate_pg_test
 
         #region Test: GetDataOneRowColumnAsync
         [Fact]
-        public async Task GetDataOneRowColumnAsync_ReturnsValue()
+        public  void GetDataOneRowColumnAsync_ReturnsValue()
         {
             // Arrange
             var query = "SELECT column_name FROM table_name LIMIT 1";
@@ -44,14 +47,14 @@ namespace data_manipulate_pg_test
                        .Returns("TestValue");
 
             // Act
-            var result = await _dataRepository.GetDataOneRowColumAsync<string>(query, parameters);
+            var result =  _dataRepository.GetDataOneRowColum<string>(query, parameters);
 
             // Assert
             Assert.Equal("TestValue", result);
         }
 
         [Fact]
-        public async Task GetDataOneRowColumnAsync_ReturnsNull_IfNoRows()
+        public void GetDataOneRowColumnAsync_ReturnsNull_IfNoRows()
         {
             // Arrange
             var query = "SELECT column_name FROM table_name LIMIT 1";
@@ -63,7 +66,7 @@ namespace data_manipulate_pg_test
                        .Returns(false);
 
             // Act
-            var result = await _dataRepository.GetDataOneRowColumAsync<string>(query, parameters);
+            var result =  _dataRepository.GetDataOneRowColum<string>(query, parameters);
 
             // Assert
             Assert.Null(result);
@@ -72,7 +75,7 @@ namespace data_manipulate_pg_test
 
         #region Test: GetDataRowAsync
         [Fact]
-        public async Task GetDataRowAsync_ReturnsRow()
+        public void GetDataRowAsync_ReturnsRow()
         {
             // Arrange
             var query = "SELECT * FROM table_name LIMIT 1";
@@ -84,7 +87,7 @@ namespace data_manipulate_pg_test
             _mockDataAdapter.Setup(x => x.Fill(It.IsAny<DataTable>())).Returns(1);
 
             // Act
-            var result = await _dataRepository.GetDataRowAsync(query, parameters);
+            var result =  _dataRepository.GetDataRow(query, parameters);
 
             // Assert
             Assert.NotNull(result);
@@ -92,7 +95,7 @@ namespace data_manipulate_pg_test
         }
 
         [Fact]
-        public async Task GetDataRowAsync_ReturnsNull_IfNoRows()
+        public void GetDataRowAsync_ReturnsNull_IfNoRows()
         {
             // Arrange
             var query = "SELECT * FROM table_name LIMIT 1";
@@ -102,7 +105,7 @@ namespace data_manipulate_pg_test
             _mockDataAdapter.Setup(x => x.Fill(It.IsAny<DataTable>())).Returns(0);
 
             // Act
-            var result = await _dataRepository.GetDataRowAsync(query, parameters);
+            var result =  _dataRepository.GetDataRow(query, parameters);
 
             // Assert
             Assert.Null(result);
@@ -111,7 +114,7 @@ namespace data_manipulate_pg_test
 
         #region Test: GetDataSetAsync
         [Fact]
-        public async Task GetDataSetAsync_ReturnsDataSet()
+        public void GetDataSetAsync_ReturnsDataSet()
         {
             // Arrange
             var query = "SELECT * FROM table_name";
@@ -121,7 +124,7 @@ namespace data_manipulate_pg_test
             _mockDataAdapter.Setup(x => x.Fill(It.IsAny<DataSet>())).Returns(1);
 
             // Act
-            var result = await _dataRepository.GetDataSetAsync(query, parameters);
+            var result = _dataRepository.GetDataSet(query, parameters);
 
             // Assert
             Assert.NotNull(result);
@@ -130,7 +133,7 @@ namespace data_manipulate_pg_test
 
         #region Test: GetDataTableAsync
         [Fact]
-        public async Task GetDataTableAsync_ReturnsDataTable()
+        public void GetDataTableAsync_ReturnsDataTable()
         {
             // Arrange
             var query = "SELECT * FROM table_name";
@@ -140,7 +143,7 @@ namespace data_manipulate_pg_test
             _mockDataAdapter.Setup(x => x.Fill(It.IsAny<DataTable>())).Returns(1);
 
             // Act
-            var result = await _dataRepository.GetDataTableAsync(query, parameters);
+            var result = _dataRepository.GetDataTable(query, parameters);
 
             // Assert
             Assert.NotNull(result);
@@ -149,7 +152,7 @@ namespace data_manipulate_pg_test
 
         #region Test: SaveChangesAsync
         [Fact]
-        public async Task SaveChangesAsync_Success()
+        public void SaveChangesAsync_Success()
         {
             // Arrange
             var queryPatterns = new List<IQueryPattern>
@@ -161,14 +164,14 @@ namespace data_manipulate_pg_test
                         .ReturnsAsync(1);
 
             // Act
-            var result = await _dataRepository.SaveChangesAsync(queryPatterns);
+            var result =  _dataRepository.SaveChanges(queryPatterns);
 
             // Assert
             Assert.True(result);
         }
 
         [Fact]
-        public async Task SaveChangesAsync_Failure()
+        public void SaveChangesAsync_Failure()
         {
             // Arrange
             var queryPatterns = new List<IQueryPattern>
@@ -180,7 +183,7 @@ namespace data_manipulate_pg_test
                         .ThrowsAsync(new Exception("Database error"));
 
             // Act & Assert
-            await Assert.ThrowsAsync<Exception>(() => _dataRepository.SaveChangesAsync(queryPatterns));
+             Assert.Throws<Exception>(() => _dataRepository.SaveChanges(queryPatterns));
         }
         #endregion
     }
