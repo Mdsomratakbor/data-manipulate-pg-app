@@ -55,12 +55,12 @@ public class DataAsyncRepositoryTests
     {
         // Arrange
         var query = "SELECT * FROM bms.measurment_points LIMIT 1";
-       // var parameters = new Dictionary<string, string>(); 
+        // var parameters = new Dictionary<string, string>(); 
 
         //await InsertTestDataAsync();
 
         // Act
-        var result = await _dataRepository.GetDataRowAsync(query);
+        var result = await _dataRepository.GetDataRowAsync(query, _dataRepository.AddParameter(new string[] {}));
 
         // Assert
         Assert.NotNull(result); 
@@ -112,19 +112,13 @@ public class DataAsyncRepositoryTests
     public async Task SaveChangesAsync_SavesChangesSuccessfully()
     {
         // Arrange
-        var queryPatterns = new List<IQueryPattern>
-    {
-        new QueryPattern
-        {
-            Query = "INSERT INTO bms.measurment_points (point_name) VALUES ('TestPoint2')",
-            Parameters = new List<Dictionary<string, string>>()
-        },
-        new QueryPattern
-        {
-            Query = "INSERT INTO bms.measurment_points (point_name) VALUES ('TestPoint3')",
-            Parameters = new List<Dictionary<string, string>>()
-        }
-    };
+        var queryPatterns = new List<IQueryPattern>();
+
+        queryPatterns.Add( _dataRepository.AddQuery("INSERT INTO bms.measurment_points (point_name) VALUES ('TestPoint2')", _dataRepository.AddParameter(new string[] { })));
+        queryPatterns.Add( _dataRepository.AddQuery("INSERT INTO bms.measurment_points (point_name) VALUES ('TestPoint2')", _dataRepository.AddParameter(new string[] { })));
+
+        
+     
 
         // Act
         var result = await _dataRepository.SaveChangesAsync(queryPatterns);
